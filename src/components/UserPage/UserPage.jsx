@@ -1,21 +1,14 @@
-
-import React, { useState } from 'react';
-import LogOutButton from '../LogOutButton/LogOutButton';
-import {useSelector, useDispatch} from 'react-redux';
+import React, { useState } from "react";
+import LogOutButton from "../LogOutButton/LogOutButton";
+import { useSelector, useDispatch } from "react-redux";
 import { useEffect } from "react";
-import ProjectList from "../ProjectList"
+import ProjectList from "../ProjectList";
 
-
-
-
-function AddProject () {
-
+function AddProject() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  const [description, setDescription] = useState('');
-  const [image, setImage] = useState('');
-
-
+  const [description, setDescription] = useState("");
+  const [image, setImage] = useState("");
 
   useEffect(() => {
     dispatch({
@@ -32,52 +25,45 @@ function AddProject () {
   // const onAddItem = (evt) => {
   //     evt.preventDefault();
   //     console.log('itemToAdd is:', itemToAdd);
-  
-  //     dispatch({ 
+
+  //     dispatch({
   //         type: 'ADD_ITEM',
   //         payload: itemToAdd
   //     });
-  
+
   // };
 
   return (
-      <div>
-          <h2>Add Item to Shelf</h2>
-          <form  action="/api/add" method="post" encType="multipart/form-data" >
-              <label htmlFor='description'>Description</label>
-              <br></br>
-              <input
-                  value={description}
-                  onChange={evt => setDescription(evt.target.value)}
-              />
-              {/* <br></br>
+    <div>
+      <h2>Add Item to Shelf</h2>
+      <form action="/api/add" method="post" encType="multipart/form-data">
+        <label htmlFor="description">Description</label>
+        <br></br>
+        <input
+          value={description}
+          onChange={(evt) => setDescription(evt.target.value)}
+        />
+        {/* <br></br>
               <label htmlFor='image'>Image URL</label>
               <br></br>
               <input
                   value={image}
                   onChange={evt => setImage(evt.target.value)}
               /> */}
-              <br></br>
-              <input type="file" name="avatar" />
-              <button>Add Item</button>
-              <ProjectList/>
-          </form> 
-      </div>
+        <br></br>
+        <input type="file" name="avatar" />
+        <button>Add Item</button>
+        <ProjectList />
+      </form>
+    </div>
   );
 }
 
 export default AddProject;
 
-
-
-
-
-
-
-
 // function UserPage() {
 //   // this component doesn't do much to start, just renders some user reducer info to the DOM
-//   
+//
 //   return (
 //     <div className="container">
 //       <h2>Welcome, {user.username}!</h2>

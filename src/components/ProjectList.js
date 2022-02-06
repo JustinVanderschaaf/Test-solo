@@ -5,8 +5,8 @@ import { useDispatch, useSelector } from "react-redux";
 function ProjectList() {
   const projectPhotos= useSelector((store) => store.projectPhotoReducer);
   const user = useSelector((store) => store.user);
-  console.log(user, "***********is projectPhotos");
-  console.log("shelf is ", projectPhotos);
+  console.log("this is user",user );
+  console.log("projectPhotos is ", projectPhotos);
 
   return (
     <div className="container">

@@ -1,13 +1,12 @@
 const projectPhotoReducer = (state = [], action) => {
-    switch (action.type) {
-        case 'SET_PROJECT_PHOTOS':
-            console.log(' SET_PROJECT_PHOTOS');
-            return action.payload;
-        default:
-            return state;
-    }
+  switch (action.type) {
+    case "SET_PROJECT_PHOTOS":
+      return action.payload;
+    default:
+      return state;
+  }
 };
 
-  // user will be on the redux state at:
-  // state.user
+// user will be on the redux state at:
+// state.user
 export default projectPhotoReducer;
