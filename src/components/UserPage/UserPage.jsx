@@ -19,7 +19,7 @@ function AddProject () {
 
   useEffect(() => {
     dispatch({
-      type: "GET_SHELF",
+      type: "GET_PROJECT_PHOTOS",
     });
   }, []);
 

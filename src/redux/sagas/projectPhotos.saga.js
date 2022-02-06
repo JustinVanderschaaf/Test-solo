@@ -2,8 +2,8 @@ import { put, takeLatest } from 'redux-saga/effects';
 import axios from 'axios';
 
 // worker Saga: will be fired on "LOGIN" actions
-function* getProject(action) {
-    console.log('inshelfsaga');
+function* getProjectPhotos(action) {
+    console.log('in get project photos');
     try {
         const config = {
         headers: { 'Content-Type': 'application/json' },
@@ -14,7 +14,7 @@ function* getProject(action) {
         // allow the server session to recognize the user
         let shelf = yield axios.get('/api/shelf', config);
         yield put({
-            type: 'SET_SHELF',
+            type: 'SET_PROJECT_PHOTOS',
             payload: shelf.data
         })
     } catch (error) {
@@ -22,8 +22,8 @@ function* getProject(action) {
     }
 }
 
-function* getProjectSaga() {
-    yield takeLatest('GET_SHELF', getProject);
+function* getProjectPhotosSaga() {
+    yield takeLatest('GET_PROJECT_PHOTOS', getProjectPhotos);
 }
 
-export default getProjectSaga;
+export default getProjectPhotosSaga;

@@ -3,18 +3,18 @@ import React from "react";
 import { useDispatch, useSelector } from "react-redux";
 
 function ProjectList() {
-  const shelf = useSelector((store) => store.shelfReducer);
+  const projectPhotos= useSelector((store) => store.projectPhotoReducer);
   const user = useSelector((store) => store.user);
-  console.log(user, "***********is user");
-  console.log("shelf is ", shelf);
+  console.log(user, "***********is projectPhotos");
+  console.log("shelf is ", projectPhotos);
 
   return (
     <div className="container">
       <ul>
-        {shelf.map((item) => (
-          <li key={item.url} className="photo">
-            {item.description} <img src={`uploads/${item.url}`} />{" "}
-            {user.id === item.user_id && <Delete itemId={item.id} />}
+        {projectPhotos.map((photo) => (
+          <li key={photo.url} className="photo">
+            {photo.description} <img src={`uploads/${photo.url}`} />{" "}
+            {user.id === photo.user_id && <Delete itemId={photo.id} />}
           </li>
         ))}
       </ul>
