@@ -34,28 +34,14 @@ function AddProject() {
   // };
 
   return (
-    <div>
-      <h2>Add Photo to Project</h2>
-      <form action="/api/images" method="post" encType="multipart/form-data">
-        <label htmlFor="description">Description</label>
-        <br></br>
-        <input
-          value={subtitle}
-          onChange={(evt) => setSubtitle(evt.target.value)}
-        />
-        {/* <br></br>
-              <label htmlFor='image'>Image URL</label>
-              <br></br>
-              <input
-                  value={image}
-                  onChange={evt => setImage(evt.target.value)}
-              /> */}
-        <br></br>
-        <input type="file" name="avatar" />
-        <button>Add Item</button>
-        <ProjectList />
-      </form>
+    <form action="/api/images" encType="multipart/form-data" method="post">
+    <div className="form-group">
+      <input type="file" className="form-control-file" name="uploaded_file"/>
+      <input type="text" className="form-control" placeholder="Number of speakers" name="description"/>
+      <input type="submit" value="Add picture!" className="btn btn-default"/>            
     </div>
+    <ProjectList />
+    </form>
   );
 }
 
