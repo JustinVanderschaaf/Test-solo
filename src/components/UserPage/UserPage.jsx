@@ -7,7 +7,7 @@ import ProjectList from "../ProjectList";
 function AddProject() {
   const dispatch = useDispatch();
   const user = useSelector((store) => store.user);
-  const [description, setDescription] = useState("");
+  const [subtitle, setSubtitle] = useState("");
   const [image, setImage] = useState("");
 
   useEffect(() => {
@@ -35,13 +35,13 @@ function AddProject() {
 
   return (
     <div>
-      <h2>Add Item to Shelf</h2>
-      <form action="/api/add" method="post" encType="multipart/form-data">
+      <h2>Add Photo to Project</h2>
+      <form action="/api/images" method="post" encType="multipart/form-data">
         <label htmlFor="description">Description</label>
         <br></br>
         <input
-          value={description}
-          onChange={(evt) => setDescription(evt.target.value)}
+          value={subtitle}
+          onChange={(evt) => setSubtitle(evt.target.value)}
         />
         {/* <br></br>
               <label htmlFor='image'>Image URL</label>
