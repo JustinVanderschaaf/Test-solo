@@ -1,3 +1,87 @@
+import React, { useState } from "react";
+import LogOutButton from "../LogOutButton/LogOutButton";
+import { useSelector, useDispatch } from "react-redux";
+import { useEffect } from "react";
+import ProjectList from "../ProjectList";
+
+function AddProject() {
+  const dispatch = useDispatch();
+  const user = useSelector((store) => store.user);
+
+  useEffect(() => {
+    dispatch({
+      type: "GET_PROJECT_PHOTOS",
+    });
+  }, []);
+
+  // const itemToAdd = {
+  //     description: description,
+  //     image_url: image,
+  //     user_id: user.id
+  // }
+
+  // const onAddItem = (evt) => {
+  //     evt.preventDefault();
+  //     console.log('itemToAdd is:', itemToAdd);
+
+  //     dispatch({
+  //         type: 'ADD_ITEM',
+  //         payload: itemToAdd
+  //     });
+
+  // };
+
+  return (
+    <>
+      <div className="container">
+        <h2>Welcome, {user.username}!</h2>
+        <p>Your ID is: {user.id}</p>
+      </div>
+      <form action="/api/images" encType="multipart/form-data" method="post">
+        <div className="form-group">
+          <input
+            type="file"
+            className="form-control-file"
+            name="uploaded_file"
+          />
+          <input
+            type="text"
+            className="form-control"
+            placeholder="Description"
+            name="description"
+          />
+
+          <input
+            type="submit"
+            value="Add picture!"
+            className="btn btn-default"
+          />
+        </div>
+        <ProjectList />
+      </form>
+      <LogOutButton className="btn" />
+    </>
+  );
+}
+
+export default AddProject;
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const express = require("express");
 const router = express.Router();
 const multer = require("multer");
@@ -17,7 +101,7 @@ const storage = multer.diskStorage({
 //limit file size "dont trust user"
 const upload = multer({
   storage: storage,
-  limits: { fileSize: 10000000 },
+  limits: { fileSize: 1000000 },
 });
 
 const {
@@ -48,12 +132,11 @@ router.get("/", (req, res) => {
  */
 router.post(
   "/",
-  upload.single("selectedFile"),
+  upload.single("uploaded_file"),
   rejectUnauthenticated,
   (req, res, next) => {
     console.log("req.body is", req.body);
     console.log("req.file is", req.file);
-    
 
     const queryText = `
       INSERT INTO "image"(url,subtitle)
